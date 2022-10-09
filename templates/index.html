@@ -1,0 +1,159 @@
+{{define "Index"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loja Go</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", "Arial", sans-serif;
+      }
+      a {
+        text-decoration: none;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fafafa;
+      }
+      header {
+        width: 70%;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: #3e3e3e;
+      }
+      main {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+      }
+      main table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 80%;
+        border: 1px solid #ddd;
+      }
+      main th,
+      td {
+        text-align: center;
+        padding: 16px;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
+      main tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .btn-new-product {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+      }
+      .btn-new-product a {
+        background-color: #3e3e3e;
+        color: #fff;
+        border-radius: 5px;
+        padding: 0.7rem;
+      }
+      a,
+      button:hover {
+        filter: brightness(95%);
+      }
+      .btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .btn-edit-product {
+        margin-right: 5px;
+        color: #fff;
+        width: 90px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        background-color: #4384f4;
+        font-size: 14px;
+        padding: 3px;
+      }
+      .btn-delete-product {
+        border: none;
+        margin-right: 5px;
+        color: #fff;
+        width: 90px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 3px;
+        background-color: #e12d3a;
+      }
+    </style>
+    <script>
+      function deleteProduct(id) {
+        let response = confirm("Tem certeza que deseja deletar esse produto?");
+        if (response) {
+          window.location = `/delete?id=${id}`;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Loja</h1>
+    </header>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .}}
+          <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Description}}</td>
+            <td>{{.Price}}</td>
+            <td>{{.Amount}}</td>
+            <td class="btn-container">
+              <a class="btn-edit-product" href="/edit?id={{.Id}}"
+                >Editar Produto</a
+              >
+              <button
+                class="btn-delete-product"
+                onclick="deleteProduct('{{.Id}}')"
+              >
+                Deletar Produto
+              </button>
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </main>
+    <div class="btn-new-product">
+      <a href="/new">Cadastrar novo produto</a>
+    </div>
+    {{template "_footer"}}
+  </body>
+</html>
+{{end}}

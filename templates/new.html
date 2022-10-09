@@ -1,0 +1,113 @@
+{{define "New"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loja Go</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto", "Arial", sans-serif;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background-color: #fafafa;
+        color: #3e3e3e;
+      }
+      header {
+        display: flex;
+        width: 60%;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      header a {
+        text-decoration: none;
+        color: #3e3e3e;
+        font-weight: bold;
+        align-self: flex-start;
+      }
+      header h1 {
+        font-size: 2.5rem;
+        color: #3e3e3e;
+      }
+      header p {
+        margin-top: 0.5rem;
+      }
+      main {
+        width: 60%;
+        margin-top: 1rem;
+      }
+      form div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+      form div label {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: #313131;
+      }
+      form div input {
+        padding: 0.2rem;
+        border: none;
+        border-bottom: 2px solid #353535;
+        background-color: transparent;
+      }
+      form div input:focus {
+        outline: none;
+        border-bottom: 2px solid #f9d25f;
+      }
+      form button {
+        border: none;
+        background: #3e3e3e;
+        padding: 1rem;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 1.1rem;
+        color: #fff;
+      }
+      form button:hover {
+        filter: brightness(80%);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/">← Voltar</a>
+      <h1>Novo produto</h1>
+      <p>Insira os detalhes</p>
+    </header>
+    <main>
+      <form action="insert" method="post">
+        <div>
+          <label for="name">Nome:</label>
+          <input type="text" name="name" />
+        </div>
+        <div>
+          <label for="description">Descrição:</label>
+          <input type="text" name="description" />
+        </div>
+        <div>
+          <label for="price">Preço:</label>
+          <input type="number" name="price" step="0.01" />
+        </div>
+        <div>
+          <label for="amount">Quantidade:</label>
+          <input type="number" name="amount" />
+        </div>
+        <button type="submit">Cadastrar</button>
+      </form>
+    </main>
+    {{template "_footer"}}
+  </body>
+</html>
+{{end}}
